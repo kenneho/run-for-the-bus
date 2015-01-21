@@ -1,0 +1,37 @@
+<resources>
+
+    <string name="app_name">Løp til bussen</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Velg stasjon</string>
+    <string name="button_text">Søk</string>
+    <string name="departure_hint">Avgang - stasjon eller område</string>
+    <string name="destination_hint">Destinasjon - stasjon eller område</string>
+    <string name="button_send_log_text">Send log to developer</string>
+    <string name="crash_toast_text">Sending crash report to the developer</string>
+    <string name="clear_history">Clear history</string>
+    <string name="no_travel_found">Fant ingen direkterute</string>
+    <string name="ok">OK</string>
+    <string name="headerLineID">#</string>
+    <string name="headerDestinationName">Destinasjon</string>
+    <string name="headerCountdown">Avreisetid</string>
+	<string name="expectedDeparture">Avgang</string>
+	<string name="select_recent">"...eller velg blandt de i listen under:"</string>
+	<string name="from">Fra</string>
+	<string name="to">Til</string>
+	<string name="infoActivityHeaderText">Reise fra </string>
+				
+    <string-array name="departure_stations_array">
+        <item>Solbergliveien</item>
+        <item>Birkelunden</item>
+        <item>Jernbanetorget</item>
+        <item>Helsfyr</item>
+    </string-array>
+    <string-array name="destination_stations_array">
+        <item>Oppsal T</item>
+        <item>Helsfyr</item>
+        <item>Sannergata</item>
+        <item>Brugata</item>
+        <item>Jernbanetorget</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,660 @@
+{
+  "TravelProposals": [
+    {
+      "DepartureTime": "2014-12-15T11:04:00",
+      "ArrivalTime": "2014-12-15T11:05:00",
+      "Remarks": [
+        
+      ],
+      "TotalTravelTime": "00:01:00",
+      "Stages": [
+        {
+          "ArrivalStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603549,
+                "Y": 6642138
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603549,
+            "Y": 6642138,
+            "Zone": "1",
+            "ShortName": "TRS",
+            "IsHub": false,
+            "ID": 3011551,
+            "Name": "Trasop skole",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "ArrivalTime": "2014-12-15T11:05:00",
+          "Deviations": [
+            
+          ],
+          "DepartureStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603588,
+                "Y": 6641700
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603588,
+            "Y": 6641700,
+            "Zone": "1",
+            "ShortName": "SBV",
+            "IsHub": false,
+            "ID": 3011335,
+            "Name": "Solbergliveien",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "DepartureTime": "2014-12-15T11:04:00",
+          "Destination": "Grorud T",
+          "LineID": 79,
+          "LineName": "79",
+          "LineColour": "E60000",
+          "Operator": "",
+          "Remarks": [
+            
+          ],
+          "TourID": 46709,
+          "TourLineID": 1053,
+          "Transportation": 2,
+          "TravelTime": "00:01:00"
+        }
+      ]
+    },
+    {
+      "DepartureTime": "2014-12-15T11:18:00",
+      "ArrivalTime": "2014-12-15T11:19:00",
+      "Remarks": [
+        
+      ],
+      "TotalTravelTime": "00:01:00",
+      "Stages": [
+        {
+          "ArrivalStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603549,
+                "Y": 6642138
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603549,
+            "Y": 6642138,
+            "Zone": "1",
+            "ShortName": "TRS",
+            "IsHub": false,
+            "ID": 3011551,
+            "Name": "Trasop skole",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "ArrivalTime": "2014-12-15T11:19:00",
+          "Deviations": [
+            
+          ],
+          "DepartureStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603588,
+                "Y": 6641700
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603588,
+            "Y": 6641700,
+            "Zone": "1",
+            "ShortName": "SBV",
+            "IsHub": false,
+            "ID": 3011335,
+            "Name": "Solbergliveien",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "DepartureTime": "2014-12-15T11:18:00",
+          "Destination": "Helsfyr T",
+          "LineID": 76,
+          "LineName": "76",
+          "LineColour": "E60000",
+          "Operator": "",
+          "Remarks": [
+            
+          ],
+          "TourID": 46199,
+          "TourLineID": 1083,
+          "Transportation": 2,
+          "TravelTime": "00:01:00"
+        }
+      ]
+    },
+    {
+      "DepartureTime": "2014-12-15T11:19:00",
+      "ArrivalTime": "2014-12-15T11:20:00",
+      "Remarks": [
+        
+      ],
+      "TotalTravelTime": "00:01:00",
+      "Stages": [
+        {
+          "ArrivalStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603549,
+                "Y": 6642138
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603549,
+            "Y": 6642138,
+            "Zone": "1",
+            "ShortName": "TRS",
+            "IsHub": false,
+            "ID": 3011551,
+            "Name": "Trasop skole",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "ArrivalTime": "2014-12-15T11:20:00",
+          "Deviations": [
+            
+          ],
+          "DepartureStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603588,
+                "Y": 6641700
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603588,
+            "Y": 6641700,
+            "Zone": "1",
+            "ShortName": "SBV",
+            "IsHub": false,
+            "ID": 3011335,
+            "Name": "Solbergliveien",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "DepartureTime": "2014-12-15T11:19:00",
+          "Destination": "Grorud T",
+          "LineID": 79,
+          "LineName": "79",
+          "LineColour": "E60000",
+          "Operator": "",
+          "Remarks": [
+            
+          ],
+          "TourID": 46708,
+          "TourLineID": 1055,
+          "Transportation": 2,
+          "TravelTime": "00:01:00"
+        }
+      ]
+    },
+    {
+      "DepartureTime": "2014-12-15T11:33:00",
+      "ArrivalTime": "2014-12-15T11:34:00",
+      "Remarks": [
+        
+      ],
+      "TotalTravelTime": "00:01:00",
+      "Stages": [
+        {
+          "ArrivalStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603549,
+                "Y": 6642138
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603549,
+            "Y": 6642138,
+            "Zone": "1",
+            "ShortName": "TRS",
+            "IsHub": false,
+            "ID": 3011551,
+            "Name": "Trasop skole",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "ArrivalTime": "2014-12-15T11:34:00",
+          "Deviations": [
+            
+          ],
+          "DepartureStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603588,
+                "Y": 6641700
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603588,
+            "Y": 6641700,
+            "Zone": "1",
+            "ShortName": "SBV",
+            "IsHub": false,
+            "ID": 3011335,
+            "Name": "Solbergliveien",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "DepartureTime": "2014-12-15T11:33:00",
+          "Destination": "Helsfyr T",
+          "LineID": 76,
+          "LineName": "76",
+          "LineColour": "E60000",
+          "Operator": "",
+          "Remarks": [
+            
+          ],
+          "TourID": 46256,
+          "TourLineID": 1121,
+          "Transportation": 2,
+          "TravelTime": "00:01:00"
+        }
+      ]
+    },
+    {
+      "DepartureTime": "2014-12-15T11:34:00",
+      "ArrivalTime": "2014-12-15T11:35:00",
+      "Remarks": [
+        
+      ],
+      "TotalTravelTime": "00:01:00",
+      "Stages": [
+        {
+          "ArrivalStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603549,
+                "Y": 6642138
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603549,
+            "Y": 6642138,
+            "Zone": "1",
+            "ShortName": "TRS",
+            "IsHub": false,
+            "ID": 3011551,
+            "Name": "Trasop skole",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "ArrivalTime": "2014-12-15T11:35:00",
+          "Deviations": [
+            
+          ],
+          "DepartureStop": {
+            "AlightingAllowed": false,
+            "BoardingAllowed": false,
+            "RealTimeStop": true,
+            "Lines": [
+              {
+                "ID": 61,
+                "Name": "61",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 76,
+                "Name": "76",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 79,
+                "Name": "79",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              },
+              {
+                "ID": 3076,
+                "Name": "76X",
+                "Transportation": 2,
+                "LineColour": "E60000"
+              }
+            ],
+            "StopPoints": [
+              {
+                "ID": 2,
+                "Name": "2",
+                "X": 603588,
+                "Y": 6641700
+              }
+            ],
+            "Deviations": [
+              
+            ],
+            "X": 603588,
+            "Y": 6641700,
+            "Zone": "1",
+            "ShortName": "SBV",
+            "IsHub": false,
+            "ID": 3011335,
+            "Name": "Solbergliveien",
+            "District": "Oslo",
+            "PlaceType": "Stop"
+          },
+          "DepartureTime": "2014-12-15T11:34:00",
+          "Destination": "Grorud T",
+          "LineID": 79,
+          "LineName": "79",
+          "LineColour": "E60000",
+          "Operator": "",
+          "Remarks": [
+            
+          ],
+          "TourID": 46707,
+          "TourLineID": 1057,
+          "Transportation": 2,
+          "TravelTime": "00:01:00"
+        }
+      ]
+    }
+  ],
+  "ReisError": null
+}

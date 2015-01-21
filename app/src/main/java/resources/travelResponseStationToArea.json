@@ -1,0 +1,980 @@
+{
+    "TravelProposals": [
+        {
+            "DepartureTime": "2014-12-16T16:01:00",
+            "ArrivalTime": "2014-12-16T16:07:00",
+            "Remarks": [],
+            "TotalTravelTime": "00:06:00",
+            "Stages": [
+                {
+                    "ArrivalStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 1,
+                                "Name": "1",
+                                "X": 598397,
+                                "Y": 6644602
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598397,
+                        "Y": 6644602,
+                        "Zone": "1",
+                        "ShortName": "BLU",
+                        "IsHub": false,
+                        "ID": 3010520,
+                        "Name": "Birkelunden [trikk]",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "ArrivalTime": "2014-12-16T16:07:00",
+                    "Deviations": [],
+                    "DepartureStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 17,
+                                "Name": "17",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 30,
+                                "Name": "30",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 31,
+                                "Name": "31",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 34,
+                                "Name": "34",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 54,
+                                "Name": "54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 309,
+                                "Name": "309",
+                                "Transportation": 2,
+                                "LineColour": "87B914"
+                            },
+                            {
+                                "ID": 2031,
+                                "Name": "31E",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3954,
+                                "Name": "N54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "X": 598044,
+                                "Y": 6643190
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598044,
+                        "Y": 6643190,
+                        "Zone": "1",
+                        "ShortName": "BRUG",
+                        "IsHub": false,
+                        "ID": 3010065,
+                        "Name": "Brugata",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "DepartureTime": "2014-12-16T16:01:00",
+                    "Destination": "Kjelsås",
+                    "LineID": 11,
+                    "LineName": "11",
+                    "LineColour": "41BECD",
+                    "Operator": "",
+                    "Remarks": [],
+                    "TourID": 35327,
+                    "TourLineID": 2358,
+                    "Transportation": 7,
+                    "TravelTime": "00:06:00"
+                }
+            ]
+        },
+        {
+            "DepartureTime": "2014-12-16T16:04:00",
+            "ArrivalTime": "2014-12-16T16:10:00",
+            "Remarks": [],
+            "TotalTravelTime": "00:06:00",
+            "Stages": [
+                {
+                    "ArrivalStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 1,
+                                "Name": "1",
+                                "X": 598397,
+                                "Y": 6644602
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598397,
+                        "Y": 6644602,
+                        "Zone": "1",
+                        "ShortName": "BLU",
+                        "IsHub": false,
+                        "ID": 3010520,
+                        "Name": "Birkelunden [trikk]",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "ArrivalTime": "2014-12-16T16:10:00",
+                    "Deviations": [
+                        {
+                            "ID": 28961,
+                            "Header": "Trikk 13: Buss for trikk på enkelte avganger "
+                        }
+                    ],
+                    "DepartureStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 17,
+                                "Name": "17",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 30,
+                                "Name": "30",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 31,
+                                "Name": "31",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 34,
+                                "Name": "34",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 54,
+                                "Name": "54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 309,
+                                "Name": "309",
+                                "Transportation": 2,
+                                "LineColour": "87B914"
+                            },
+                            {
+                                "ID": 2031,
+                                "Name": "31E",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3954,
+                                "Name": "N54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "X": 598044,
+                                "Y": 6643190
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598044,
+                        "Y": 6643190,
+                        "Zone": "1",
+                        "ShortName": "BRUG",
+                        "IsHub": false,
+                        "ID": 3010065,
+                        "Name": "Brugata",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "DepartureTime": "2014-12-16T16:04:00",
+                    "Destination": "Storo-Grefsen stasjon",
+                    "LineID": 13,
+                    "LineName": "13",
+                    "LineColour": "41BECD",
+                    "Operator": "",
+                    "Remarks": [],
+                    "TourID": 36539,
+                    "TourLineID": 2369,
+                    "Transportation": 7,
+                    "TravelTime": "00:06:00"
+                }
+            ]
+        },
+        {
+            "DepartureTime": "2014-12-16T16:07:00",
+            "ArrivalTime": "2014-12-16T16:13:00",
+            "Remarks": [],
+            "TotalTravelTime": "00:06:00",
+            "Stages": [
+                {
+                    "ArrivalStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 1,
+                                "Name": "1",
+                                "X": 598397,
+                                "Y": 6644602
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598397,
+                        "Y": 6644602,
+                        "Zone": "1",
+                        "ShortName": "BLU",
+                        "IsHub": false,
+                        "ID": 3010520,
+                        "Name": "Birkelunden [trikk]",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "ArrivalTime": "2014-12-16T16:13:00",
+                    "Deviations": [],
+                    "DepartureStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 17,
+                                "Name": "17",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 30,
+                                "Name": "30",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 31,
+                                "Name": "31",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 34,
+                                "Name": "34",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 54,
+                                "Name": "54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 309,
+                                "Name": "309",
+                                "Transportation": 2,
+                                "LineColour": "87B914"
+                            },
+                            {
+                                "ID": 2031,
+                                "Name": "31E",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3954,
+                                "Name": "N54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "X": 598044,
+                                "Y": 6643190
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598044,
+                        "Y": 6643190,
+                        "Zone": "1",
+                        "ShortName": "BRUG",
+                        "IsHub": false,
+                        "ID": 3010065,
+                        "Name": "Brugata",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "DepartureTime": "2014-12-16T16:07:00",
+                    "Destination": "Disen",
+                    "LineID": 12,
+                    "LineName": "12",
+                    "LineColour": "41BECD",
+                    "Operator": "",
+                    "Remarks": [],
+                    "TourID": 35680,
+                    "TourLineID": 2354,
+                    "Transportation": 7,
+                    "TravelTime": "00:06:00"
+                }
+            ]
+        },
+        {
+            "DepartureTime": "2014-12-16T16:11:00",
+            "ArrivalTime": "2014-12-16T16:17:00",
+            "Remarks": [],
+            "TotalTravelTime": "00:06:00",
+            "Stages": [
+                {
+                    "ArrivalStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 1,
+                                "Name": "1",
+                                "X": 598397,
+                                "Y": 6644602
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598397,
+                        "Y": 6644602,
+                        "Zone": "1",
+                        "ShortName": "BLU",
+                        "IsHub": false,
+                        "ID": 3010520,
+                        "Name": "Birkelunden [trikk]",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "ArrivalTime": "2014-12-16T16:17:00",
+                    "Deviations": [],
+                    "DepartureStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 17,
+                                "Name": "17",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 30,
+                                "Name": "30",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 31,
+                                "Name": "31",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 34,
+                                "Name": "34",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 54,
+                                "Name": "54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 309,
+                                "Name": "309",
+                                "Transportation": 2,
+                                "LineColour": "87B914"
+                            },
+                            {
+                                "ID": 2031,
+                                "Name": "31E",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3954,
+                                "Name": "N54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "X": 598044,
+                                "Y": 6643190
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598044,
+                        "Y": 6643190,
+                        "Zone": "1",
+                        "ShortName": "BRUG",
+                        "IsHub": false,
+                        "ID": 3010065,
+                        "Name": "Brugata",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "DepartureTime": "2014-12-16T16:11:00",
+                    "Destination": "Kjelsås",
+                    "LineID": 11,
+                    "LineName": "11",
+                    "LineColour": "41BECD",
+                    "Operator": "",
+                    "Remarks": [],
+                    "TourID": 35325,
+                    "TourLineID": 2362,
+                    "Transportation": 7,
+                    "TravelTime": "00:06:00"
+                }
+            ]
+        },
+        {
+            "DepartureTime": "2014-12-16T16:14:00",
+            "ArrivalTime": "2014-12-16T16:20:00",
+            "Remarks": [],
+            "TotalTravelTime": "00:06:00",
+            "Stages": [
+                {
+                    "ArrivalStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 1,
+                                "Name": "1",
+                                "X": 598397,
+                                "Y": 6644602
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598397,
+                        "Y": 6644602,
+                        "Zone": "1",
+                        "ShortName": "BLU",
+                        "IsHub": false,
+                        "ID": 3010520,
+                        "Name": "Birkelunden [trikk]",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "ArrivalTime": "2014-12-16T16:20:00",
+                    "Deviations": [
+                        {
+                            "ID": 28961,
+                            "Header": "Trikk 13: Buss for trikk på enkelte avganger "
+                        }
+                    ],
+                    "DepartureStop": {
+                        "AlightingAllowed": false,
+                        "BoardingAllowed": false,
+                        "RealTimeStop": true,
+                        "Lines": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 12,
+                                "Name": "12",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 13,
+                                "Name": "13",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 17,
+                                "Name": "17",
+                                "Transportation": 7,
+                                "LineColour": "41BECD"
+                            },
+                            {
+                                "ID": 30,
+                                "Name": "30",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 31,
+                                "Name": "31",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 34,
+                                "Name": "34",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 54,
+                                "Name": "54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 111,
+                                "Name": "111",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 112,
+                                "Name": "112",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 309,
+                                "Name": "309",
+                                "Transportation": 2,
+                                "LineColour": "87B914"
+                            },
+                            {
+                                "ID": 2031,
+                                "Name": "31E",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3912,
+                                "Name": "N12",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            },
+                            {
+                                "ID": 3954,
+                                "Name": "N54",
+                                "Transportation": 2,
+                                "LineColour": "E60000"
+                            }
+                        ],
+                        "StopPoints": [
+                            {
+                                "ID": 11,
+                                "Name": "11",
+                                "X": 598044,
+                                "Y": 6643190
+                            }
+                        ],
+                        "Deviations": [],
+                        "X": 598044,
+                        "Y": 6643190,
+                        "Zone": "1",
+                        "ShortName": "BRUG",
+                        "IsHub": false,
+                        "ID": 3010065,
+                        "Name": "Brugata",
+                        "District": "Oslo",
+                        "PlaceType": "Stop"
+                    },
+                    "DepartureTime": "2014-12-16T16:14:00",
+                    "Destination": "Storo-Grefsen stasjon",
+                    "LineID": 13,
+                    "LineName": "13",
+                    "LineColour": "41BECD",
+                    "Operator": "",
+                    "Remarks": [],
+                    "TourID": 36647,
+                    "TourLineID": 2371,
+                    "Transportation": 7,
+                    "TravelTime": "00:06:00"
+                }
+            ]
+        }
+    ],
+    "ReisError": null
+}

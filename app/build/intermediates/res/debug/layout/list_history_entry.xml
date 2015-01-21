@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="50dip"
+    android:layout_marginTop="20dip"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:weightSum="5" >
+
+    <TextView
+        android:id="@+id/fromTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="20dip"
+        android:textSize="16sp"
+        android:text="@string/from" />
+
+    <TextView
+        android:id="@+id/departureName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/fromTextView"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/toTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fromTextView"
+        android:layout_marginLeft="15dip"
+        android:layout_marginRight="25dip"
+        android:textSize="16sp"
+        android:text="@string/to" />
+
+    <TextView
+        android:id="@+id/destinationName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@id/toTextView"
+        android:layout_below="@id/departureName"
+        android:gravity="right"
+        android:textSize="16sp" />
+
+</RelativeLayout><!-- From: file:/home/kenneho/AndroidstudioProjects/RunNow1/app/src/main/res/layout/list_history_entry.xml -->

@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="/home/kenneho/AndroidstudioProjects/RunNow1/app/src/main/assets"><file name="migrations/2.sql" path="/home/kenneho/AndroidstudioProjects/RunNow1/app/src/main/assets/migrations/2.sql"/><file name="migrations/3.sql" path="/home/kenneho/AndroidstudioProjects/RunNow1/app/src/main/assets/migrations/3.sql"/></source></dataSet><dataSet config="debug"><source path="/home/kenneho/AndroidstudioProjects/RunNow1/app/src/debug/assets"/></dataSet></merger>

@@ -1,0 +1,9 @@
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/classes/debug
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/ActiveAndroid-f151291f820e404ce8dcd0bb98fe58880a3853ce.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/robotium-solo-5.2.1-366dcefd2669dc9b8aa2a6882ad0ceda98f9f540.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/acra-4.5.0-cd9a7fbc1cef9c8790faf671f75f5d8c7c205a3e.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/gson-2.3-a06ba907c058cec5146ea16fb0a55b59f734098a.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/fest-assert-core-2.0M10-7a7fdd1391cc800b4c1a7a8dcec0feea69b7d53f.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/commons-io-2.4-acf2fc6d6912e8b718e3d4980ffb2024c2f269e6.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/fest-android-1.0.8-fe2238130696913972483659bf230b03a6a02d46.jar
+/home/kenneho/AndroidstudioProjects/RunNow1/app/build/intermediates/pre-dexed/debug/support-v4-19.1.0-052401765ffd29ba889be7ffe9e804a520d03612.jar

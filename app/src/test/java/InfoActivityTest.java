@@ -1,0 +1,138 @@
+package test.java;
+
+import net.kenneho.runnow.InfoActivity;
+import net.kenneho.runnow.MainActivity;
+import net.kenneho.runnow.R;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.robolectric.Robolectric;
+import org.robolectric.RobolectricTestRunner;
+import org.robolectric.shadows.ShadowAlertDialog;
+import org.robolectric.shadows.ShadowLog;
+
+import android.app.AlertDialog;
+import android.content.Intent;
+import android.test.AndroidTestCase;
+import android.widget.ListView;
+
+@RunWith(RobolectricTestRunner.class)
+public class InfoActivityTest extends AndroidTestCase {
+
+	private InfoActivity infoActivity;
+	private Intent triggerIntent, startedIntent;
+
+	@Before
+	public void setup() {
+
+		System.out.println("##################################################");
+		System.out.println("################# TEST ###########################");
+		System.out.println("##################################################");
+
+		ShadowLog.stream = System.out;
+
+		//mainActivity = Robolectric.buildActivity(MainActivity.class).create().get();
+
+		triggerIntent = new Intent(Robolectric.getShadowApplication().getApplicationContext(), InfoActivity.class);		
+	}
+
+	@Test
+	public void testFromStationToStationMustWork() {
+		int departureID = 3011335; // Solbergliveien;
+		int destinationID = 3011554; // Trasoppveien;
+
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE, departureID);
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE, destinationID);
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE_NAME, "dummy");
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE_NAME, "dummy");
+		
+		infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();		
+		infoActivity.setIntent(triggerIntent);
+
+		ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
+
+		assertTrue(listview.getCount() > 5);
+		
+		// Populate the list with actual items. "setListAdapter"
+	}
+
+	@Test
+	public void fromAreaToStationMustWork() {
+		int departureID = 1000023708; // Birkelunden (område)
+		int destinationID = 3010065; // Brugata
+
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE, departureID);
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE, destinationID);
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE_NAME, "dummy");
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE_NAME, "dummy");
+
+		infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();
+		infoActivity.setIntent(triggerIntent);
+
+		ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
+		assertTrue(listview.getCount() > 5);
+		
+		Robolectric.shadowOf(infoActivity.getListView()).populateItems();
+
+	}
+
+	@Test
+	public void fromStationToAreaMustWork() {
+		int departureID = 3011335; // Solbergliveien
+		int destinationID = 1000021179; // Helsfyr (område)
+
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE, departureID);
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE, destinationID);
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE_NAME, "dummy");
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE_NAME, "dummy");
+
+		infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();
+		infoActivity.setIntent(triggerIntent);
+
+		ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
+		assertTrue(listview.getCount() > 5);
+	}
+
+
+	@Test
+	public void fromAreaToAreaMustWork() {
+		int departureID = 1000027573; // Jernbanetorget (område)
+		int destinationID = 1000022429; // Nationaltheatret (område)
+
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE, departureID);
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE, destinationID);
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE_NAME, "dummy");
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE_NAME, "dummy");
+
+		infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();
+		infoActivity.setIntent(triggerIntent);
+
+		ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
+		assertTrue(listview.getCount() > 5);
+	}
+
+	@Test
+	public void travelsWithWalkingStageMustFail() {
+		int departureID = 1000027573; // Jernbanetorget (område)
+		int destinationID = 3011335; // Solbergliveien
+
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE, departureID);
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE, destinationID);
+		triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE_NAME, "dummy");
+		triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE_NAME, "dummy");
+
+		infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();
+		infoActivity.setIntent(triggerIntent);
+
+		ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
+		assertTrue(listview.getCount() == 0);
+
+		AlertDialog alert =	ShadowAlertDialog.getLatestAlertDialog();
+		
+		// The ShadowAlertDialog gives us access to more info about the AlertDialog
+		ShadowAlertDialog sAlert = Robolectric.shadowOf(alert);
+		assertEquals(infoActivity.getString(R.string.no_travel_found), sAlert.getMessage().toString());
+
+	}
+
+}

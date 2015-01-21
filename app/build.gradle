@@ -1,0 +1,41 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "21.1.2"
+
+    defaultConfig {
+        applicationId "net.kenneho.runnow"
+        minSdkVersion 8
+        targetSdkVersion 18
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-project.txt'
+        }
+    }
+}
+
+
+dependencies {
+    compile 'com.android.support:support-v4:19.1.0'
+    compile 'com.google.code.gson:gson:2.3'
+    compile 'com.jayway.android.robotium:robotium-solo:5.2.1'
+    compile files('libs/ActiveAndroid.jar')
+    compile files('libs/acra-4.5.0.jar')
+    compile files('libs/commons-io-2.4.jar')
+    compile files('libs/fest-android-1.0.8.jar')
+    compile files('libs/fest-assert-core-2.0M10.jar')
+    androidTestCompile 'junit:junit:4.10'
+    //instrumentTestCompile 'junit:junit:4.10'
+    //testCompile 'junit:junit:4.10'
+
+    androidTestCompile 'org.robolectric:robolectric:2.4'
+    //testDebugCompile 'org.debugonly.dependency'
+    //testFreeCompile 'Admob.jar'
+
+}
+
+apply plugin: 'android-unit-test'
