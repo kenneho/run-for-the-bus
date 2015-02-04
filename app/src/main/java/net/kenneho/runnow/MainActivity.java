@@ -7,6 +7,7 @@ import net.kenneho.runnow.adapters.PlacesAutoCompleteAdapter;
 import net.kenneho.runnow.database.DB_Travel;
 import net.kenneho.runnow.jsonDefinitions.JsonPlace;
 import net.kenneho.runnow.networking.HttpManager;
+import net.kenneho.runnow.networking.NetworkManager;
 import net.kenneho.runnow.utils.Utils;
 
 import android.os.Build;
@@ -49,12 +50,14 @@ public class MainActivity extends Activity {
     private ProgressBar progressBar1;
     private TextView t;
     private HttpManager httpManager;
+    private NetworkManager networkManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myContext = this;
 
+        networkManager = new NetworkManager(this);
         Log.i(LOG, "Creating MainActivity...");
 
         setContentView(R.layout.activity_main);
@@ -126,15 +129,16 @@ public class MainActivity extends Activity {
                                     int position, long id) {
                 DB_Travel t = db_ListAdapter.getItem(position);
 
-                Toast.makeText(getApplicationContext(),
-                        t.departureName + " => " + t.destinationName, Toast.LENGTH_LONG)
-                        .show();
                 uniqueDepartureStation = Integer.parseInt(t.departureID);
                 departureName = t.departureName;
                 destinationName = t.destinationName;
                 uniqueDestinationStation = Integer.parseInt(t.destinationID);
 
                 verifyAndCreateIntent();
+
+                Toast.makeText(getApplicationContext(),
+                        t.departureName + " => " + t.destinationName, Toast.LENGTH_LONG)
+                        .show();
 
                 t.updateTimestamp();
             }
@@ -216,7 +220,18 @@ public class MainActivity extends Activity {
         });
     }
 
+
     private void verifyAndCreateIntent() {
+
+        if (!networkManager.isConnected()) {
+            Log.d(LOG, "We're NOT connected to the Internet. Aborting...");
+            Utils.warnUser(this, "Feil", "Vi er ikke koblet til Internett.");
+            return;
+        }
+        else {
+            Log.d(LOG, "We're connected to the Internet. Proceeding...");
+        }
+
         if (uniqueDepartureStation == 0 || uniqueDestinationStation == 0) {
             Log.i(LOG, "Departure or destination have ID == 0");
             Utils.warnUser(myContext, "Informasjon", "Fant ikke stasjonen.");

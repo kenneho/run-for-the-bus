@@ -15,7 +15,7 @@
     <string name="headerDestinationName">Destinasjon</string>
     <string name="headerCountdown">Avreisetid</string>
 	<string name="expectedDeparture">Avgang</string>
-	<string name="select_recent">"...eller velg blandt de i listen under:"</string>
+	<string name="select_recent">"...eller velg blant de i listen under:"</string>
 	<string name="from">Fra</string>
 	<string name="to">Til</string>
 	<string name="infoActivityHeaderText">Reise fra </string>

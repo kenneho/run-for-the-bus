@@ -28,11 +28,11 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 public class InfoActivity extends ListActivity implements OnRefreshListener {
     private final String LOG = "InfoActivity";
 
-    private NetworkManager networkManager;
 	private IDownloadListener downloadListener;
 	private RuterManager ruterManager;
 	private SwipeRefreshLayout swipeLayout;
@@ -42,12 +42,22 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 	private DatabaseManager databaseManager;
 	private String departureName, destinationName;
 	private HttpManager httpManager;
+    private NetworkManager networkManager;
 
 	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.custom_list_activity_view);
+        Log.d(LOG, "Calling onCreate()");
+
+        networkManager = new NetworkManager(this.getApplicationContext());
+        if (!networkManager.isConnected()) {
+            Log.i(LOG, "No internet connection. Calling finish() to return to previous activity");
+            Utils.warnUser(getApplicationContext(), "Feilmelding", "Ingen internettforbindelse. ");
+            finish();
+            return;
+        }
 
 		// TODO: Already initialized in MainActivity. Look into dependency injections to avoid
 		// initializing multiple instances of this class
@@ -90,15 +100,37 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
 	@Override 
 	public void onRefresh() {
-		new Handler().postDelayed(new Runnable() {
-			@Override public void run() {
-				swipeLayout.setRefreshing(false);
-				Log.d(LOG, "onRefresh()");
-				generateListData(departureID, destinationID);
+        Log.d(LOG, "Calling onRefresh()...");
 
-			}
-		}, 5000);
+        if (!networkManager.isConnected()) {
+            Log.d(LOG, "We're NOT connected to the Internet. Aborting...");
+            AlertDialog  dialog = Utils.warnUser(this, "Feil", "Du er ikke koblet til Internett.");
+
+         }
+        else {
+            Log.d(LOG, "Refreshing the list....");
+            new Handler().postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    swipeLayout.setRefreshing(false);
+                    Log.d(LOG, "onRefresh()");
+                    generateListData(departureID, destinationID);
+
+                }
+            }, 5000);
+        }
 	}
+
+    @Override
+    public void onRestart() {
+        Log.d(LOG, "Calling onRestart()...");
+        super.onRestart();
+    }
+    @Override
+    public void onStop() {
+        Log.d(LOG, "Calling onStop");
+        super.onStop();
+    }
 
 	private void showProgress(String progress) {
 		//mProgress.setProgress();

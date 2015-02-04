@@ -137,7 +137,7 @@ public class Utils {
 
 	}
 
-	public static void warnUser(Context context, String title, String warning) {
+	public static AlertDialog warnUser(Context context, String title, String warning) {
 
 		//AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
 		AlertDialog.Builder builder = new AlertDialog.Builder(context);
@@ -157,6 +157,8 @@ public class Utils {
 		AlertDialog dialog = builder.create();
 
 		dialog.show();
+
+        return dialog;
 	}
 
 	public static Date getFutureDate(int seconds) throws ParseException {
