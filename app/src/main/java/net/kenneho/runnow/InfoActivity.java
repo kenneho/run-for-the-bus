@@ -26,6 +26,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v4.widget.SwipeRefreshLayout.OnRefreshListener;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -43,8 +44,9 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 	private String departureName, destinationName;
 	private HttpManager httpManager;
     private NetworkManager networkManager;
+    private List<RealtimeTravel> myTravels; // Will be modified in separate thread.
 
-	@TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -88,15 +90,37 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
 		getListView().setHeaderDividersEnabled(true);
 
-		generateListData(departureID, destinationID);
+        if(savedInstanceState == null || !savedInstanceState.containsKey("travels")) {
+            Log.i(LOG, "Generating a new dataset to display...");
+            generateListData(departureID, destinationID);
+        }
+        else {
+            Log.i(LOG, "Re-using our old dataset when displaying the travels.");
+            ArrayList<RealtimeTravel> travels = savedInstanceState.getParcelableArrayList("travels");
 
-		swipeLayout = (SwipeRefreshLayout) this.findViewById(R.id.swipe_container);		
+            try {
+                Log.d(LOG, "Creating our adapter using the list of " + travels.size() + " travels");
+                TravelsAdapter adapter = new TravelsAdapter(getApplicationContext(), travels);
+                Log.d(LOG, "Attaching the adapter...");
+                setListAdapter(adapter);
+                Log.d(LOG, "Adding countdown timer to the list");
+                addCountdownTimer(adapter);
+                ringProgressDialog.dismiss();
+
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
+		swipeLayout = (SwipeRefreshLayout) this.findViewById(R.id.swipe_container);
 		swipeLayout.setOnRefreshListener(this);
 		swipeLayout.setColorScheme(android.R.color.holo_blue_bright, 
 				android.R.color.holo_green_light, 
 				android.R.color.holo_orange_light, 
 				android.R.color.holo_red_light);
-	}
+
+    }
 
 	@Override 
 	public void onRefresh() {
@@ -125,7 +149,26 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     public void onRestart() {
         Log.d(LOG, "Calling onRestart()...");
         super.onRestart();
+
     }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        int size = getListAdapter().getCount();
+
+
+        ArrayList<RealtimeTravel> travels = new ArrayList<RealtimeTravel>();
+        for (int i = 0; i < size; i++) {
+            RealtimeTravel travel = (RealtimeTravel) getListAdapter().getItem(i);
+            travels.add(travel);
+
+        }
+
+        Log.i(LOG, "Saving our " + size + " travels to a parcel");
+        outState.putParcelableArrayList("travels", travels);
+        super.onSaveInstanceState(outState);
+    }
+
     @Override
     public void onStop() {
         Log.d(LOG, "Calling onStop");
@@ -149,13 +192,28 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
 	}
 
-	private class GenerateList extends AsyncTask<Integer, String, TravelsAdapter> {
+    private void addCountdownTimer(TravelsAdapter adapter) {
+        final TravelsAdapter myAdapter = adapter;
+        final Handler timerHandler = new Handler();
+        Runnable timerRunnable = new Runnable() {
+            @Override
+            public void run() {
+                myAdapter.notifyDataSetChanged();
+                timerHandler.postDelayed(this, 1000); //run every second
+            }
+
+        };
+        timerHandler.postDelayed(timerRunnable, 0);
+    }
+
+
+    private class GenerateList extends AsyncTask<Integer, String, TravelsAdapter> {
 
 		@Override
 		protected TravelsAdapter doInBackground(Integer... params) {
 			Log.d(LOG, "Running background process to fetch data from Ruter....");
 
-			List<RealtimeTravel> myTravels = new ArrayList<RealtimeTravel>();
+			myTravels = new ArrayList<RealtimeTravel>();
 			TravelsAdapter adapter = null;
 
 			int departureID = params[0];
@@ -209,18 +267,8 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
 					// We've got a valid travel, so let's save it to our database 
 					saveToDatabase();
-					
-					final TravelsAdapter myAdapter = adapter;
-					final Handler timerHandler = new Handler();
-					Runnable timerRunnable = new Runnable() {
-					    @Override
-					    public void run() {
-					        myAdapter.notifyDataSetChanged();
-					        timerHandler.postDelayed(this, 1000); //run every second
-					    }
-					    						
-					};
-					timerHandler.postDelayed(timerRunnable, 0);
+
+                    addCountdownTimer(adapter);
 
 				}
 			}
@@ -232,7 +280,8 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
 		}
 
-		protected void onProgressUpdate(String... progress) {     
+
+        protected void onProgressUpdate(String... progress) {
 			showProgress(progress[0]);
 		}
 

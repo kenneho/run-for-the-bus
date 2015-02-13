@@ -28,7 +28,7 @@ public class Travel {
 		scheduledDepartureTime = time;
 	}
 	
-	public Date getDepartureTime() {
+	public Date getScheduledDepartureTime() {
 		return scheduledDepartureTime;
 	}
 

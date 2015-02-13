@@ -44,9 +44,9 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         // Get the data item for this position
         RealtimeTravel travel = getItem(position);
         View rowView = convertView;
-        // Check if an existing view is being reused, otherwise inflate the view
 
         // We'll be using a kind of a "cache" for our rows
+        // Check if an existing view is being reused, otherwise inflate the view
         ViewHolder viewHolder;
         if (rowView == null) {
             rowView = LayoutInflater.from(getContext()).inflate(R.layout.item_ruterdata, parent, false);
@@ -80,11 +80,11 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         viewHolder.destinationName.setText(travel.getFinalDestinationName());
         viewHolder.expectedDeparture.setTextColor(Color.BLACK);
         viewHolder.countdown.setTextColor(Color.BLACK);
-        //viewHolder.scheduledDeparture.setText(Utils.dateToString(travel.getDepartureTime()));
+        //viewHolder.scheduledDeparture.setText(Utils.dateToString(travel.getScheduledDepartureTime()));
 
         int bufferInSeconds = 20;
         Date actualDepartureTime = travel.getRealtimeDepartureTime(); // TODO: Må dette inn i viewHolder?
-        Date scheduledDepartureTime = travel.getDepartureTime();
+        Date scheduledDepartureTime = travel.getScheduledDepartureTime();
         viewHolder.removeTime = Utils.addSecondsToDate(actualDepartureTime, bufferInSeconds);
 
         Date now = Utils.getTimestamp();
@@ -109,7 +109,6 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         return rowView;
 
     }
-
 
     private boolean pastRemoveTime(long timeToDepartureInMillis) {
 

@@ -251,7 +251,7 @@ public class RuterManagerTest extends AndroidTestCase{
 			
 			assertEquals(expectedDepartureStationID, travel.getDepartureStationID());
 	
-			assertTrue(travel.getDepartureTime().toString().startsWith(expectedDepartureTimePrefix));
+			assertTrue(travel.getScheduledDepartureTime().toString().startsWith(expectedDepartureTimePrefix));
 			
 			String finalDestinationName = travel.getFinalDestinationName();
 			assertTrue(expectedFinalDestinationNames.contains(finalDestinationName));
@@ -298,7 +298,7 @@ public class RuterManagerTest extends AndroidTestCase{
 		for (RealtimeTravel travel : travels) {
 			System.out.println(" - line name: " + travel.getLineName());
 			System.out.println(" - departure station id: " + travel.getDepartureStationID());
-			System.out.println(" - departure time: " + travel.getDepartureTime());
+			System.out.println(" - departure time: " + travel.getScheduledDepartureTime());
 			System.out.println(" - realtime departure: " + travel.getRealtimeDepartureTime());
 			System.out.println(" - finel destination name: " + travel.getFinalDestinationName() + " (" + travel.getFinalDestinationID() + ")");
 

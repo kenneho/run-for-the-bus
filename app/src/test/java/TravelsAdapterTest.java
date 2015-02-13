@@ -86,9 +86,9 @@ public class TravelsAdapterTest extends AndroidTestCase {
 	public void earlyDeparturesMustShowCorrectText() throws Exception {
 		Context context = Mockito.mock(Context.class);
 
-		printStuff(earlyArrival.getRealtimeDepartureTime(), earlyArrival.getDepartureTime());
+		printStuff(earlyArrival.getRealtimeDepartureTime(), earlyArrival.getScheduledDepartureTime());
 		
-		assertTrue(earlyArrival.getRealtimeDepartureTime().before(earlyArrival.getDepartureTime()));
+		assertTrue(earlyArrival.getRealtimeDepartureTime().before(earlyArrival.getScheduledDepartureTime()));
 		
 		String expectedString = "Avgang: " + Utils.extractTimeFromDate(earlyArrival.getRealtimeDepartureTime()) 
 				+ " (1 min, 5 sek for tidlig ute)";
@@ -101,9 +101,9 @@ public class TravelsAdapterTest extends AndroidTestCase {
 	@Test
 	public void lateDeparturesMustShowCorrectText() throws Exception {
 		
-		printStuff(lateArrival.getRealtimeDepartureTime(), lateArrival.getDepartureTime());
+		printStuff(lateArrival.getRealtimeDepartureTime(), lateArrival.getScheduledDepartureTime());
 
-		assertTrue(lateArrival.getRealtimeDepartureTime().after(lateArrival.getDepartureTime()));
+		assertTrue(lateArrival.getRealtimeDepartureTime().after(lateArrival.getScheduledDepartureTime()));
 		
 		String expectedString = "Avgang: " + Utils.extractTimeFromDate(lateArrival.getRealtimeDepartureTime()) 
 				+ " (1 min, 30 sek forsinket)";
@@ -117,9 +117,9 @@ public class TravelsAdapterTest extends AndroidTestCase {
 	@Test
 	public void onTimeDeparturesMustShowCorrectText() throws Exception {
 		
-		printStuff(onTimeArrival.getRealtimeDepartureTime(), onTimeArrival.getDepartureTime());
+		printStuff(onTimeArrival.getRealtimeDepartureTime(), onTimeArrival.getScheduledDepartureTime());
 
-		assertTrue(onTimeArrival.getRealtimeDepartureTime().equals(onTimeArrival.getDepartureTime()));
+		assertTrue(onTimeArrival.getRealtimeDepartureTime().equals(onTimeArrival.getScheduledDepartureTime()));
 		
 		String expectedString = "Avgang: " + Utils.extractTimeFromDate(onTimeArrival.getRealtimeDepartureTime()) 
 				+ " (i rute)";
@@ -136,7 +136,7 @@ public class TravelsAdapterTest extends AndroidTestCase {
 		int initialSize = adapter.getCount();
 		pastArrival.setRealtimeDepartureTime(getPastDate(30)); // Buffer is 20 seconds, so the entry should now be removed from the adapter
 
-		printStuff(pastArrival.getRealtimeDepartureTime(), pastArrival.getDepartureTime());
+		printStuff(pastArrival.getRealtimeDepartureTime(), pastArrival.getScheduledDepartureTime());
 
 		adapter.getView(0, null, null);
 		
@@ -147,7 +147,7 @@ public class TravelsAdapterTest extends AndroidTestCase {
 	
 	@Test
 	public void coundownMustShowCorrectValues() {
-		printStuff(pastArrival.getRealtimeDepartureTime(), pastArrival.getDepartureTime());
+		printStuff(pastArrival.getRealtimeDepartureTime(), pastArrival.getScheduledDepartureTime());
 		
 		LinearLayout row = (LinearLayout) adapter.getView(0, null, null);
 		TextView textviewCountdown = (TextView) row.findViewById(R.id.countdown);
