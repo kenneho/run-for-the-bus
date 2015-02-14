@@ -1,3 +1,0 @@
-ALTER TABLE Travels ADD DepartureID STRING;
-ALTER TABLE Travels ADD DestinationID STRING;
-
