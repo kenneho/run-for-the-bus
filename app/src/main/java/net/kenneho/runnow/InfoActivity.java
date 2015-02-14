@@ -18,6 +18,7 @@ import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -150,6 +151,17 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         Log.d(LOG, "Calling onRestart()...");
         super.onRestart();
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        /* Make sure we restart the first activity when we return.
+        */
+        startActivity(new Intent(this, MainActivity.class));
+
+        // Destroy the current activity
+        finish();
     }
 
     @Override

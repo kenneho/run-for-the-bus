@@ -242,6 +242,7 @@ public class MainActivity extends Activity {
         }
         else {
             createIntent();
+            finish();
         }
     }
 
