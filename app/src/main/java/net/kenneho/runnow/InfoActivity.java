@@ -155,7 +155,12 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onBackPressed() {
+        Log.d(LOG, "onBackPressed()");
+        exitActivity();
+    }
 
+    private void exitActivity() {
+        Log.i(LOG, "Returning to MainActivity...");
         /* Make sure we restart the first activity when we return.
         */
         startActivity(new Intent(this, MainActivity.class));
@@ -183,7 +188,8 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onStop() {
-        Log.d(LOG, "Calling onStop");
+        Log.d(LOG, "onStop()");
+        exitActivity();
         super.onStop();
     }
 
