@@ -161,11 +161,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     private void exitActivity() {
         Log.i(LOG, "Returning to MainActivity...");
-        /* Make sure we restart the first activity when we return.
-        */
-        startActivity(new Intent(this, MainActivity.class));
-
-        // Destroy the current activity
         finish();
     }
 
@@ -189,7 +184,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     @Override
     public void onStop() {
         Log.d(LOG, "onStop()");
-        exitActivity();
+        //exitActivity();
         super.onStop();
     }
 

@@ -108,6 +108,22 @@ public class MainActivity extends Activity {
         }
     }
 
+    @Override
+    public void onRestart() {
+        super.onRestart();
+        Log.d(LOG, "onRestart");
+
+        textviewDeparture =(DelayAutoCompleteTextView) findViewById(R.id.text_departure);
+        textviewDestination =(DelayAutoCompleteTextView) findViewById(R.id.text_destination);
+        textviewDeparture.getText().clear();
+        textviewDestination.getText().clear();
+
+        try {
+            createRecentList();
+        } catch (Exception e) {
+            throw new RuntimeException("Something went wrong when generating the list of recent travels.");
+        }
+    }
 
     private void createRecentList() throws Exception {
 
@@ -242,7 +258,7 @@ public class MainActivity extends Activity {
         }
         else {
             createIntent();
-            finish();
+            //finish();
         }
     }
 
