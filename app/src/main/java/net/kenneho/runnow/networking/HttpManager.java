@@ -6,6 +6,8 @@ import java.io.Reader;
 import java.net.HttpURLConnection;
 import java.net.URI;
 import java.net.URL;
+import java.net.URLEncoder;
+
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -20,16 +22,20 @@ public class HttpManager {
 
 	public Object makeRestCall(String urlString, Class<?> myclass) throws Exception {
 		InputStream in = null;
-		
-		URI uri = new URI(urlString);
+
+        URI uri = new URI(urlString);
 		
 		// HTTP Get
 		try {
 
 			URL url = uri.toURL();
-			Log.v(LOG, "Calling URL " + url);
+            Log.v(LOG, "Calling URL " + url);
 
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
+            System.out.println("Setting charset...");
+            urlConnection.setRequestProperty("accept-charset", "UTF-8");
+            urlConnection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
+
 			in = urlConnection.getInputStream();
 
 		} catch (Exception e ) {

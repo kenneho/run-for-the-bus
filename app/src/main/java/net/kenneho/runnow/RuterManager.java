@@ -1,5 +1,6 @@
 package net.kenneho.runnow;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -33,9 +34,13 @@ public class RuterManager  {
 
     public List<JsonPlace> getPlaces(String placeName) throws Exception {
 
-        // Place names may have spaces and other symbols in them. Let's replace
-        // those symbols with proper ones for URL
-        String urlString = "http://reisapi.ruter.no/Place/GetPlaces/" + placeName.trim();
+        /*
+        * Let's encode the place name to get the call to work with norwegian characters
+        * */
+        placeName = placeName.trim();
+        placeName = URLEncoder.encode(placeName, "utf-8");
+
+        String urlString = "http://reisapi.ruter.no/Place/GetPlaces/" + placeName;
 
         JsonPlace[] response = (JsonPlace[]) httpManager.makeRestCall(urlString, JsonPlace[].class);
 
