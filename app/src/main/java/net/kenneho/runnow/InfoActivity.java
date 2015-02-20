@@ -168,7 +168,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     protected void onSaveInstanceState(Bundle outState) {
         int size = getListAdapter().getCount();
 
-
         ArrayList<RealtimeTravel> travels = new ArrayList<RealtimeTravel>();
         for (int i = 0; i < size; i++) {
             RealtimeTravel travel = (RealtimeTravel) getListAdapter().getItem(i);
@@ -280,6 +279,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
 					// We've got a valid travel, so let's save it to our database 
 					saveToDatabase();
+                    updateSearchTimestamp();
 
                     addCountdownTimer(adapter);
 
@@ -320,11 +320,16 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 	private void saveToDatabase() {
 
 		if (databaseManager.entryExists(departureName, destinationName)) {
-			Log.d(LOG, "Entry exists, not storing");
+			Log.d(LOG, "Database entry exists, not storing");
 			return;
 		}
 
 		databaseManager.saveTravelEntry(departureName, departureID + "", destinationName, destinationID + "");
 
 	}
+
+    private void updateSearchTimestamp() {
+        databaseManager.updateTimestamp(departureName, destinationName);
+    }
+
 }

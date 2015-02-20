@@ -36,10 +36,11 @@ public class DatabaseManager {
 
 	public boolean entryExists(String departureName, String destinationName) {
 
-		DB_Travel travel = new Select()
+		/*DB_Travel travel = new Select()
 		.from(DB_Travel.class)
 		.where("departureName = ? AND destinationNAME = ?", departureName, destinationName)
-		.executeSingle();
+		.executeSingle();*/
+        DB_Travel travel = getEntryByName(departureName, destinationName);
 
 		if (travel == null) {
 			return false;
@@ -59,4 +60,20 @@ public class DatabaseManager {
 		Log.i(LOG, "Clearing the history database");
 		new Delete().from(DB_Travel.class).execute();
 	}
+
+    public void updateTimestamp(String departureName, String destinationName) {
+        DB_Travel entry = getEntryByName(departureName, destinationName);
+        Log.i(LOG, "Updating timestamp for travel " + departureName + " => " + destinationName);
+        entry.updateTimestamp();
+    }
+
+    private DB_Travel getEntryByName(String departureName, String destinationName) {
+        DB_Travel travel = new Select()
+                .from(DB_Travel.class)
+                .where("departureName = ? AND destinationNAME = ?", departureName, destinationName)
+                .executeSingle();
+
+
+        return travel;
+    }
 }

@@ -32,7 +32,6 @@ public class HttpManager {
             Log.v(LOG, "Calling URL " + url);
 
 			HttpURLConnection urlConnection = (HttpURLConnection) url.openConnection();
-            System.out.println("Setting charset...");
             urlConnection.setRequestProperty("accept-charset", "UTF-8");
             urlConnection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
 

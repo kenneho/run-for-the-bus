@@ -111,7 +111,7 @@ public class MainActivity extends Activity {
     @Override
     public void onRestart() {
         super.onRestart();
-        Log.d(LOG, "onRestart");
+        Log.d(LOG, "onRestart()");
 
         textviewDeparture =(DelayAutoCompleteTextView) findViewById(R.id.text_departure);
         textviewDestination =(DelayAutoCompleteTextView) findViewById(R.id.text_destination);
@@ -156,7 +156,6 @@ public class MainActivity extends Activity {
                         t.departureName + " => " + t.destinationName, Toast.LENGTH_LONG)
                         .show();
 
-                t.updateTimestamp();
             }
         });
     }
