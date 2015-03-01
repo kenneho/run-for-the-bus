@@ -87,8 +87,8 @@ public class PlacesAutoCompleteAdapter extends ArrayAdapter<JsonPlace> implement
 				try {
 					updatedPlacesList = ruterManager.getPlaces(constraint.toString());
 				} catch (Exception e) {
-					Log.d(LOG, "Failed to lookup place \"" + constraint.toString() + "\". Most likely we're trying to lookup a complete place name, and everything is all right. Ignoring. ");
-					return null; // Return something else here? 
+                    Log.i(LOG, "Failed to lookup place \"" + constraint.toString() + "\". Most likely we're trying to lookup a complete place name, and everything is all right. Ignoring. ");
+                    return null;
 				}
 				updatedPlacesList = filterPlaces(updatedPlacesList, "Street"); // Skip object of type "Street"
 

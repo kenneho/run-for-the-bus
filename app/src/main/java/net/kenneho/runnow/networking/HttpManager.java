@@ -8,6 +8,7 @@ import java.net.URI;
 import java.net.URL;
 import java.net.URLEncoder;
 
+import android.accounts.NetworkErrorException;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -20,7 +21,7 @@ public class HttpManager {
 	public HttpManager() {
 	}
 
-	public Object makeRestCall(String urlString, Class<?> myclass) throws Exception {
+	public Object makeRestCall(String urlString, Class<?> myclass) throws Exception, NetworkErrorException {
 		InputStream in = null;
 
         URI uri = new URI(urlString);
@@ -35,11 +36,14 @@ public class HttpManager {
             urlConnection.setRequestProperty("accept-charset", "UTF-8");
             urlConnection.setRequestProperty("Content-Type", "text/plain; charset=utf-8");
 
+            System.out.println("Response code:  " + urlConnection.getResponseCode());
+
+
 			in = urlConnection.getInputStream();
 
 		} catch (Exception e ) {
 			Log.d(LOG, "Fail to read data from Ruter using URL " + urlString + ": " + e.getMessage());
-			return null;
+			throw new NetworkErrorException("Fail to read data from Ruter");
 		}
 
 		try {

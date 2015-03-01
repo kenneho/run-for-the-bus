@@ -31,8 +31,6 @@ import org.robolectric.RobolectricTestRunner;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import edu.emory.mathcs.backport.java.util.Collections;
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.os.Build;

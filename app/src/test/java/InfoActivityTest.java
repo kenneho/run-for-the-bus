@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowAlertDialog;
 import org.robolectric.shadows.ShadowLog;
 
@@ -16,6 +17,10 @@ import android.content.Intent;
 import android.test.AndroidTestCase;
 import android.widget.ListView;
 
+import com.squareup.okhttp.mockwebserver.MockResponse;
+import com.squareup.okhttp.mockwebserver.MockWebServer;
+
+@Config(manifest = "app/src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
 public class InfoActivityTest extends AndroidTestCase {
 
@@ -35,6 +40,41 @@ public class InfoActivityTest extends AndroidTestCase {
 
 		triggerIntent = new Intent(Robolectric.getShadowApplication().getApplicationContext(), InfoActivity.class);		
 	}
+
+    @Test
+    public void testNetworkErrorMustWarnUser() throws Exception{
+        int departureID = 3011335; // Solbergliveien;
+        int destinationID = 3011554; // Trasoppveien;
+
+        triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE, departureID);
+        triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE, destinationID);
+        triggerIntent.putExtra(MainActivity.DEPARURE_MESSAGE_NAME, "dummy");
+        triggerIntent.putExtra(MainActivity.DESTINATION_MESSAGE_NAME, "dummy");
+
+        System.out.println("000");
+
+        String MOCKED_WORD = "test";
+        MockWebServer mMockWebServer = new MockWebServer();
+        mMockWebServer.enqueue(new MockResponse().setBody(MOCKED_WORD));
+        mMockWebServer.play();
+
+        //Robolectric.getFakeHttpLayer().interceptHttpRequests(false);
+        //Robolectric.getFakeHttpLayer().interceptResponseContent(false);
+
+        //Robolectric.addPendingHttpResponse(500, "feil");
+        //Robolectric.setDefaultHttpResponse(400, null);
+
+        System.out.println("111");
+        infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();
+        System.out.println("222");
+        infoActivity.setIntent(triggerIntent);
+        System.out.println("333");
+
+        ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
+
+        assertTrue(listview.getCount() > 5);
+
+    }
 
 	@Test
 	public void testFromStationToStationMustWork() {

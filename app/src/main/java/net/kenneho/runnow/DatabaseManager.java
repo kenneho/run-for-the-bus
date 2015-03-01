@@ -13,7 +13,7 @@ import net.kenneho.runnow.utils.Utils;
 
 public class DatabaseManager {
 	private static final String LOG = "DatabaseManager";
-    private int limit = 5;
+    private int limit = 10;
 
 	public DatabaseManager() {
 

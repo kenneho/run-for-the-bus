@@ -153,6 +153,7 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         else if (diff > 0){
             viewHolder.expectedDeparture.setText(departureString + departureTimeString + " (" + timeToDeparture + " forsinket)");
         }
+
         else if (diff < 0) {
             diff = Utils.timeDifferenceMilliseconds(scheduledDepartureTime, actualDepartureTime);
             timeToDeparture = Utils.millisToStringConvert(diff);

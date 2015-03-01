@@ -49,7 +49,6 @@ public class NetworkManagerTest extends AndroidTestCase {
 		
 		shadowNetworkInfo.setConnectionStatus(true);
 		assertTrue(networkManager.isConnected());
-
 	}
 	@Test
 	public void returnFalseWhenNotConnectedToNetwork() {

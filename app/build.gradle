@@ -27,6 +27,11 @@ android {
             zipAlignEnabled true
         }
     }
+
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 
@@ -39,12 +44,16 @@ dependencies {
     compile files('libs/commons-io-2.4.jar')
     compile files('libs/fest-android-1.0.8.jar')
     compile files('libs/fest-assert-core-2.0M10.jar')
-    androidTestCompile 'junit:junit:4.10'
-    //instrumentTestCompile 'junit:junit:4.10'
-    //testCompile 'junit:junit:4.10'
+    androidTestCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
+    testCompile 'org.robolectric:robolectric:2.4'
+    testCompile "org.mockito:mockito-core:1.9.5"
+    testCompile 'com.squareup.okhttp:mockwebserver:2.2.0'
+
     androidTestCompile 'org.robolectric:robolectric:2.4'
+    androidTestCompile "org.mockito:mockito-core:1.9.5"
     //testDebugCompile 'org.debugonly.dependency'
     //testFreeCompile 'Admob.jar'
 }
 
-apply plugin: 'android-unit-test'
+//apply plugin: 'android-unit-test'
