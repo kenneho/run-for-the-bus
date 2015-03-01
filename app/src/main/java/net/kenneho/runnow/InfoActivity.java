@@ -167,6 +167,17 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+
+        /*
+        * If the user exits the application before the adapter has been set, our
+        * list adapter is null. .
+        * */
+        if (getListAdapter() == null) {
+            Log.i(LOG, "Saving instance state, but our listadapter is null");
+            return;
+        }
+
         int size = getListAdapter().getCount();
 
         ArrayList<RealtimeTravel> travels = new ArrayList<RealtimeTravel>();
@@ -178,7 +189,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
         Log.i(LOG, "Saving our " + size + " travels to a parcel");
         outState.putParcelableArrayList("travels", travels);
-        super.onSaveInstanceState(outState);
+
     }
 
     @Override
@@ -295,7 +306,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                 if (adapter != null) {
 
                     if (adapter.getCount() == 0) {
-                        empty();
+                        cancelActivity("Informasjon", getString(R.string.no_travel_found));
 
                     } else {
                         Log.d(LOG, "Will put " + adapter.getCount() + " elements in the list. Now, let's attach our adapter...");
