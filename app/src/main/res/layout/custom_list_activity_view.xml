@@ -19,26 +19,6 @@
             android:layout_weight="1"
             android:drawSelectorOnTop="false" />
 
-        <!--
-         <ProgressBar
-        android:id="@+id/progress_bar" 
-        style="@android:style/Widget.ProgressBar.Horizontal" />
-        -->
-        <!--
-         <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        
-        <TextView
-            android:text="@string/hello_world"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="center"/>
-    </ScrollView>
-        -->
-
     </android.support.v4.widget.SwipeRefreshLayout>
 
 </LinearLayout>

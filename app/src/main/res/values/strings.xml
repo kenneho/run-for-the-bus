@@ -23,19 +23,5 @@
 	<string name="from">Fra</string>
 	<string name="to">Til</string>
 	<string name="infoActivityHeaderText">Reise fra </string>
-				
-    <string-array name="departure_stations_array">
-        <item>Solbergliveien</item>
-        <item>Birkelunden</item>
-        <item>Jernbanetorget</item>
-        <item>Helsfyr</item>
-    </string-array>
-    <string-array name="destination_stations_array">
-        <item>Oppsal T</item>
-        <item>Helsfyr</item>
-        <item>Sannergata</item>
-        <item>Brugata</item>
-        <item>Jernbanetorget</item>
-    </string-array>
 
 </resources>

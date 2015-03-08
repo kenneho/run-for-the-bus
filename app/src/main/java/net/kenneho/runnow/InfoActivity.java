@@ -53,13 +53,13 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.custom_list_activity_view);
-        Log.d(LOG, "Calling onCreate()");
+        Log.d(LOG, "onCreate()");
 
         networkManager = new NetworkManager(this.getApplicationContext());
         if (!networkManager.isConnected()) {
             Log.i(LOG, "No internet connection. Calling finish() to return to previous activity");
             Utils.warnUser(getApplicationContext(), "Feilmelding", "Ingen internettforbindelse. ");
-            finish();
+            exitActivity();
             return;
         }
 
@@ -111,7 +111,10 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
             }
             catch (Exception e) {
+                Utils.warnUser(getApplicationContext(), "Informasjon", getString(R.string.prefixErrorCode) + " 20.");
+                Log.e(LOG, "Something went really wrong! This is the exception thrown: " + e.toString());
                 e.printStackTrace();
+                exitActivity();
             }
         }
 
@@ -126,7 +129,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onRefresh() {
-        Log.d(LOG, "Calling onRefresh()...");
+        Log.d(LOG, "onRefresh()...");
 
         if (!networkManager.isConnected()) {
             Log.d(LOG, "We're NOT connected to the Internet. Aborting...");
@@ -149,7 +152,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onRestart() {
-        Log.d(LOG, "Calling onRestart()...");
+        Log.d(LOG, "onRestart()...");
         super.onRestart();
 
     }
@@ -161,13 +164,15 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     }
 
     private void exitActivity() {
-        Log.i(LOG, "Returning to MainActivity...");
+        Log.i(LOG, "Returning to MainActivity by calling finish()...");
         finish();
     }
 
+
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
+        Log.d(LOG, "onSaveInstanceState()");
 
         /*
         * If the user exits the application before the adapter has been set, our
@@ -190,6 +195,8 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         Log.i(LOG, "Saving our " + size + " travels to a parcel");
         outState.putParcelableArrayList("travels", travels);
 
+        super.onSaveInstanceState(outState);
+
     }
 
     @Override
@@ -198,6 +205,31 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         //exitActivity();
         super.onStop();
     }
+
+    @Override
+    public void onStart() {
+        Log.d(LOG, "onStart()");
+        super.onStart();
+    }
+
+    @Override
+    public void onPause() {
+        Log.d(LOG, "onPause()");
+        super.onPause();
+    }
+
+    @Override
+    public void onResume() {
+        Log.d(LOG, "onResume()");
+        super.onResume();
+    }
+
+    @Override
+    public void onDestroy() {
+        Log.d(LOG, "onDestroy()");
+        super.onDestroy();
+    }
+
 
     private void showProgress(String progress) {
         //mProgress.setProgress();

@@ -40,7 +40,7 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) throws IndexOutOfBoundsException {
         // Get the data item for this position
         RealtimeTravel travel = getItem(position);
         View rowView = convertView;
@@ -93,8 +93,13 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         long timeToDepartureInMillis = Utils.timeDifferenceMilliseconds(actualDepartureTime, now);
 
         if (hasExpired(now, viewHolder)) {
-            Log.i(LOG, "Removing entry " + travel.getLineName() + " with departure time " + actualDepartureTime + " from the list");
-            remove(getItem(position));
+            Log.i(LOG, "Removing entry " + position + " of " + getCount() + ", having line number " + travel.getLineName() + " with departure time " + actualDepartureTime + " from the list");
+            try {
+                remove(getItem(position));
+            }
+            catch (IndexOutOfBoundsException e) {
+                throw new IndexOutOfBoundsException("Failed to remove item from the TravelsAdapter.");
+            }
             notifyDataSetChanged();
             return rowView;
         }

@@ -37,12 +37,6 @@
             android:layout_height="wrap_content"
             android:gravity="left" />
 
-        <!-- <TextView
-            android:id="@+id/scheduledDepartureTime"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible"
-            android:gravity="left" /> -->
 
         <TextView
             android:id="@+id/countdown"
