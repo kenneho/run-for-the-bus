@@ -40,7 +40,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:indeterminate="true" 
-        android:layout_gravity="center_vertical|right"
+        android:layout_gravity="center_vertical|end"
         android:visibility="gone" />
     
     <LinearLayout
@@ -58,7 +58,6 @@
             android:id="@+id/historiTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="15dp"
             android:text="@string/select_recent" />
         
     </LinearLayout>
