@@ -92,8 +92,6 @@ public class RuterManagerTest extends AndroidTestCase{
     @Test
     public void testGetPlacesShouldThrowExeceptionOnNetworkErrors() throws Exception {
 
-
-
         HttpManager nonfakeManager = new HttpManager();
         RuterManager manager = new RuterManager(nonfakeManager);
 

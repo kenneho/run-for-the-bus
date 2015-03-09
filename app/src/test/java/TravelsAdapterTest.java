@@ -20,6 +20,7 @@ import org.mockito.Mockito;
 
 import org.robolectric.Robolectric;
 import org.robolectric.RobolectricTestRunner;
+import org.robolectric.annotation.Config;
 import org.robolectric.shadows.ShadowLog;
 
 import android.content.Context;
@@ -28,11 +29,12 @@ import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+@Config(manifest = "app/src/main/AndroidManifest.xml")
 @RunWith(RobolectricTestRunner.class)
 public class TravelsAdapterTest extends AndroidTestCase {
 
 	private RealtimeTravel onTimeArrival, earlyArrival, lateArrival, pastArrival;
-	private final String LOG_PREFIX = "InfoTest";
+	private final String LOG_PREFIX = "TravelsAdapterTest";
 	private TravelsAdapter adapter;
 
 	@Before

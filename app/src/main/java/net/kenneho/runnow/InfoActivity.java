@@ -92,31 +92,8 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
         getListView().setHeaderDividersEnabled(true);
 
-        if(savedInstanceState == null || !savedInstanceState.containsKey("travels")) {
-            Log.i(LOG, "Generating a new dataset to display...");
-            generateListData(departureID, destinationID);
-        }
-        else {
-            Log.i(LOG, "Re-using our old dataset when displaying the travels.");
-            ArrayList<RealtimeTravel> travels = savedInstanceState.getParcelableArrayList("travels");
-
-            try {
-                Log.d(LOG, "Creating our adapter using the list of " + travels.size() + " travels");
-                TravelsAdapter adapter = new TravelsAdapter(getApplicationContext(), travels);
-                Log.d(LOG, "Attaching the adapter...");
-                setListAdapter(adapter);
-                Log.d(LOG, "Adding countdown timer to the list");
-                addCountdownTimer(adapter);
-                ringProgressDialog.dismiss();
-
-            }
-            catch (Exception e) {
-                Utils.warnUser(getApplicationContext(), "Informasjon", getString(R.string.prefixErrorCode) + " 20.");
-                Log.e(LOG, "Something went really wrong! This is the exception thrown: " + e.toString());
-                e.printStackTrace();
-                exitActivity();
-            }
-        }
+        Log.i(LOG, "Generating a new dataset to display...");
+        generateListData(departureID, destinationID);
 
         swipeLayout = (SwipeRefreshLayout) this.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
@@ -124,6 +101,33 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+    }
+
+    @Override
+    public void onRestoreInstanceState(Bundle savedInstanceState) {
+        Log.i(LOG, "onRestoreInstanceState(): Re-using our old dataset when displaying the travels.");
+
+        ArrayList<RealtimeTravel> travels = savedInstanceState.getParcelableArrayList("travels");
+
+        try {
+            Log.d(LOG, "Creating our adapter using the list of " + travels.size() + " travels");
+            TravelsAdapter adapter = new TravelsAdapter(getApplicationContext(), travels);
+            Log.d(LOG, "Attaching the adapter...");
+            setListAdapter(adapter);
+            Log.d(LOG, "Adding countdown timer to the list");
+            addCountdownTimer(adapter);
+            ringProgressDialog.dismiss();
+
+        }
+        catch (Exception e) {
+            Utils.warnUser(getApplicationContext(), "Informasjon", getString(R.string.prefixErrorCode) + " 20.");
+            Log.e(LOG, "Something went really wrong! This is the exception thrown: " + e.toString());
+            e.printStackTrace();
+            exitActivity();
+        }
+
+        super.onRestoreInstanceState(savedInstanceState);
 
     }
 
@@ -189,7 +193,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         for (int i = 0; i < size; i++) {
             RealtimeTravel travel = (RealtimeTravel) getListAdapter().getItem(i);
             travels.add(travel);
-
         }
 
         Log.i(LOG, "Saving our " + size + " travels to a parcel");

@@ -64,11 +64,8 @@ public class InfoActivityTest extends AndroidTestCase {
         //Robolectric.addPendingHttpResponse(500, "feil");
         //Robolectric.setDefaultHttpResponse(400, null);
 
-        System.out.println("111");
         infoActivity = Robolectric.buildActivity(InfoActivity.class).withIntent(triggerIntent).create().get();
-        System.out.println("222");
         infoActivity.setIntent(triggerIntent);
-        System.out.println("333");
 
         ListView listview = (ListView) infoActivity.findViewById(android.R.id.list);
 
