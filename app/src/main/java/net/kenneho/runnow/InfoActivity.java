@@ -227,7 +227,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onResume() {
-        Log.d(LOG, "onResume(): Restarting timerHandler...");
+        Log.d(LOG, "onResume(): Restarting timerHandler with timerHandler.postDelayed...");
         timerHandler.postDelayed(timerRunnable, 1000);
         super.onResume();
     }
@@ -259,7 +259,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     private void removeExpiredTravels(TravelsAdapter myTravels) {
 
-        Log.i(LOG, "Checking for expired travels...2");
+        Log.i(LOG, "Checking for expired travels...3");
 
         List<RealtimeTravel> removeList = new ArrayList<RealtimeTravel>();
 
@@ -267,7 +267,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
             if (hasExpired(travel)) {
 
-                Log.i(LOG, "Removing expired entry " + travel.getLineName() + " (" + travel.getRealtimeDepartureTime() + ") from the list");
+                //Log.i(LOG, "Removing expired entry " + travel.getRealtimeDepartureTime() + " from the list");
                 try {
                     //travelsAdapter.remove(travel);
                     removeList.add(travel);
@@ -286,9 +286,8 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         }
 
         for (RealtimeTravel travel : removeList) {
-            Log.i(LOG, "Removing " + travel.getLineName() + " time " + travel.getRealtimeDepartureTime());
+            Log.i(LOG, "Removing expired entry " + travel.getRealtimeDepartureTime());
             myTravels.remove(travel);
-
         }
     }
 
@@ -309,11 +308,14 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
             * in effect making the Runnable object call itself every second
             *
             * */
-                timerHandler.postDelayed(this, 1000);
+
+                Log.d(LOG, "run(): timerHandler.postDelayed");
+                 timerHandler.postDelayed(this, 1000);
             }
 
         };
 
+        Log.d(LOG, "Staring timerHandler.postDelayed");
         // Fire off the first run
         timerHandler.postDelayed(timerRunnable, 0);
     }
@@ -404,7 +406,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                         saveToDatabase();
                         updateSearchTimestamp();
 
-                        System.out.println("00000000000000000000");
                         addCountdownTimer(adapter);
 
                     }
