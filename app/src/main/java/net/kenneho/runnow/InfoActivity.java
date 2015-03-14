@@ -2,6 +2,7 @@ package net.kenneho.runnow;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import net.kenneho.runnow.adapters.TravelsAdapter;
 import net.kenneho.runnow.customObjects.RealtimeTravel;
@@ -47,6 +48,9 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     private HttpManager httpManager;
     private NetworkManager networkManager;
     private List<RealtimeTravel> myTravels; // Will be modified in separate thread.
+    private final Handler timerHandler = new Handler();
+    private Runnable timerRunnable;
+    private TravelsAdapter travelsAdapter;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -101,6 +105,34 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        Log.d(LOG, "onSaveInstanceState()");
+
+        /*
+        * If the user exits the application before the adapter has been set, our
+        * list adapter is null. .
+        * */
+        if (getListAdapter() == null) {
+            Log.i(LOG, "Saving instance state, but our listadapter is null");
+            return;
+        }
+
+        int size = getListAdapter().getCount();
+
+        ArrayList<RealtimeTravel> travels = new ArrayList<RealtimeTravel>();
+        for (int i = 0; i < size; i++) {
+            RealtimeTravel travel = (RealtimeTravel) getListAdapter().getItem(i);
+            travels.add(travel);
+        }
+
+        Log.i(LOG, "Saving our " + size + " travels to a parcel");
+        outState.putParcelableArrayList("travels", travels);
+
+        super.onSaveInstanceState(outState);
 
     }
 
@@ -173,35 +205,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     }
 
 
-
-    @Override
-    protected void onSaveInstanceState(Bundle outState) {
-        Log.d(LOG, "onSaveInstanceState()");
-
-        /*
-        * If the user exits the application before the adapter has been set, our
-        * list adapter is null. .
-        * */
-        if (getListAdapter() == null) {
-            Log.i(LOG, "Saving instance state, but our listadapter is null");
-            return;
-        }
-
-        int size = getListAdapter().getCount();
-
-        ArrayList<RealtimeTravel> travels = new ArrayList<RealtimeTravel>();
-        for (int i = 0; i < size; i++) {
-            RealtimeTravel travel = (RealtimeTravel) getListAdapter().getItem(i);
-            travels.add(travel);
-        }
-
-        Log.i(LOG, "Saving our " + size + " travels to a parcel");
-        outState.putParcelableArrayList("travels", travels);
-
-        super.onSaveInstanceState(outState);
-
-    }
-
     @Override
     public void onStop() {
         Log.d(LOG, "onStop()");
@@ -224,6 +227,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     @Override
     public void onResume() {
         Log.d(LOG, "onResume()");
+
         super.onResume();
     }
 
@@ -251,20 +255,67 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     }
 
-    private void addCountdownTimer(TravelsAdapter adapter) {
+
+    private void removeExpiredTravels(TravelsAdapter myTravels) {
+
+        Log.i(LOG, "Checking for expired travels...2");
+
+        List<RealtimeTravel> removeList = new ArrayList<RealtimeTravel>();
+
+        for (RealtimeTravel travel : myTravels.getItems()) {
+
+            if (hasExpired(travel)) {
+
+                Log.i(LOG, "Removing expired entry " + travel.getLineName() + " (" + travel.getRealtimeDepartureTime() + ") from the list");
+                try {
+                    //travelsAdapter.remove(travel);
+                    removeList.add(travel);
+                } catch (IndexOutOfBoundsException e) {
+                    Log.d(LOG, "Removing the entry caused an IndexOutOfBoundsException.");
+                    throw new IndexOutOfBoundsException("Failed to remove item from the TravelsAdapter.");
+                }
+
+                //travelsAdapter.notifyDataSetChanged();
+
+            }
+
+            // Update the expiration time, as it may change according to new info from Ruter?
+            //travel.setExpirationTime();
+
+        }
+
+        for (RealtimeTravel travel : removeList) {
+            Log.i(LOG, "Removing " + travel.getLineName() + " time " + travel.getRealtimeDepartureTime());
+            myTravels.remove(travel);
+
+        }
+    }
+
+
+    private void addCountdownTimer(final TravelsAdapter adapter) {
         final TravelsAdapter myAdapter = adapter;
-        final Handler timerHandler = new Handler();
-        Runnable timerRunnable = new Runnable() {
+        Log.d(LOG, "addCountdownTimer()");
+
+        timerRunnable = new Runnable() {
             @Override
             public void run() {
+
+                removeExpiredTravels(myAdapter);
                 myAdapter.notifyDataSetChanged();
-                timerHandler.postDelayed(this, 1000); //run every second
+
+            /*
+            * Make the handler send a message to the Runnable object every second,
+            * in effect making the Runnable object call itself every second
+            *
+            * */
+                timerHandler.postDelayed(this, 1000);
             }
 
         };
+
+        // Fire off the first run
         timerHandler.postDelayed(timerRunnable, 0);
     }
-
 
     private class GenerateList extends AsyncTask<Integer, String, Object> {
 
@@ -273,7 +324,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
             Log.d(LOG, "Running background process to fetch data from Ruter....");
 
             myTravels = new ArrayList<RealtimeTravel>();
-            TravelsAdapter adapter = null;
 
             int departureID = params[0];
             int destinationID = params[1];
@@ -285,24 +335,19 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
                 myTravels = ruterManager.getTravels(departureID, destinationID);
 
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 Log.i(LOG, "ruterManager.getTravels threw this IllegalArgumentException: " + e.toString());
                 return getString(R.string.no_travel_found);
-            }
-            catch (NetworkErrorException e) {
+            } catch (NetworkErrorException e) {
                 Log.i(LOG, "ruterManager.getTravels threw this NetworkErrorException: " + e.toString());
                 return getString(R.string.network_error);
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 Log.i(LOG, "ruterManager.getTravels threw this IOException: " + e.toString());
                 return getString(R.string.prefixErrorCode) + "2";
-            }
-            catch (XmlPullParserException e) {
+            } catch (XmlPullParserException e) {
                 Log.i(LOG, "ruterManager.getTravels threw this XmlPullParserException: " + e.toString());
                 return getString(R.string.prefixErrorCode) + "3";
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.i(LOG, "ruterManager.getTravels threw this Exception: " + e.toString());
                 return getString(R.string.prefixErrorCode) + "4";
             }
@@ -311,7 +356,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
                 publishProgress("Gjør klar for å vise resultatene...");
 
-                adapter = new TravelsAdapter(getApplicationContext(), myTravels);
+                travelsAdapter = new TravelsAdapter(getApplicationContext(), myTravels);
             } catch (Exception e) {
 
                 e.printStackTrace();
@@ -319,10 +364,16 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
             }
 
+            //removeExpiredTravels(myTravels);
+
             ringProgressDialog.dismiss();
 
-            return adapter;
+            return travelsAdapter;
         }
+
+
+
+
 
         protected void onPostExecute(Object value) {
 
@@ -334,14 +385,15 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
                 ringProgressDialog.dismiss();
                 cancelActivity(getString(R.string.dialogHeader_error), errorMessage);
-            }
-            else if (value instanceof TravelsAdapter) {
+            } else if (value instanceof TravelsAdapter) {
 
+                Log.d(LOG, "Back in the UI thread. Let's attach the adapter to the listview.");
                 TravelsAdapter adapter = (TravelsAdapter) value;
                 if (adapter != null) {
 
                     if (adapter.getCount() == 0) {
                         cancelActivity("Informasjon", getString(R.string.no_travel_found));
+
 
                     } else {
                         Log.d(LOG, "Will put " + adapter.getCount() + " elements in the list. Now, let's attach our adapter...");
@@ -351,6 +403,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                         saveToDatabase();
                         updateSearchTimestamp();
 
+                        System.out.println("00000000000000000000");
                         addCountdownTimer(adapter);
 
                     }
@@ -359,8 +412,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                     ringProgressDialog.dismiss();
                     cancelActivity("Informasjon", getString(R.string.no_travel_found));
                 }
-            }
-            else {
+            } else {
                 Log.i(LOG, "Background task returned an object of type " + value.getClass());
                 cancelActivity(getString(R.string.dialogHeader_error), getString(R.string.prefixErrorCode) + "1.");
             }
@@ -407,5 +459,15 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     private void updateSearchTimestamp() {
         databaseManager.updateTimestamp(departureName, destinationName);
     }
+
+    private boolean hasExpired(RealtimeTravel travel) {
+
+        Date now = Utils.getTimestamp();
+
+        if (now.after(travel.getExpirationTime())) {
+            return true;
+        } else return false;
+    }
+
 
 }

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
     private final static String LOG = "TravelsAdapter";
+    private List<RealtimeTravel> travels;
 
     static class ViewHolder {
         TextView routeName;
@@ -36,11 +37,29 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
 
     public TravelsAdapter(Context context, List<RealtimeTravel> objects) throws Exception {
         super(context, R.layout.item_ruterdata, objects);
+        travels = objects;
         Log.d(LOG, "RuterDataAdapter size: " + objects.size());
     }
 
     @Override
+    public int getCount() {
+        return travels.size();
+    }
+
+    @Override
     public View getView(int position, View convertView, ViewGroup parent) throws IndexOutOfBoundsException {
+
+        if (getCount() < 10) Log.d(LOG, "Fetching position " + position + " of our " + getCount() + " size list");
+
+        /*
+        * Workaround for some random IndexOutOfBoundsException
+        * TODO: Fix root cause
+        *
+        * */
+        if (getCount() == 0) {
+            throw new IndexOutOfBoundsException("Tried to fetch an item for an empty list. Ignoring");
+        }
+
         // Get the data item for this position
         RealtimeTravel travel = getItem(position);
         View rowView = convertView;
@@ -92,18 +111,6 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
 
         long timeToDepartureInMillis = Utils.timeDifferenceMilliseconds(actualDepartureTime, now);
 
-        if (hasExpired(now, viewHolder)) {
-            Log.i(LOG, "Removing entry " + position + " of " + getCount() + ", having line number " + travel.getLineName() + " with departure time " + actualDepartureTime + " from the list");
-            try {
-                remove(getItem(position));
-            }
-            catch (IndexOutOfBoundsException e) {
-                throw new IndexOutOfBoundsException("Failed to remove item from the TravelsAdapter.");
-            }
-            notifyDataSetChanged();
-            return rowView;
-        }
-
         // Only show the countdown for the next 3 departures
         if (position < 3) {
             String timeToDeparture = Utils.millisToStringConvert(timeToDepartureInMillis);
@@ -122,13 +129,6 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
 
     }
 
-    private boolean hasExpired(Date now, ViewHolder viewHolder) {
-
-        if (now.after(viewHolder.removeTime)) {
-            return true;
-        }
-        else return false;
-    }
 
     private void setRowBackground(int position, ViewHolder viewHolder) {
         if (position % 2 != 0) {
@@ -165,5 +165,9 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
 
             viewHolder.expectedDeparture.setText(departureString + departureTimeString + " (" + timeToDeparture + " for tidlig ute)");
         }
+    }
+
+    public List<RealtimeTravel> getItems() {
+        return travels;
     }
 }

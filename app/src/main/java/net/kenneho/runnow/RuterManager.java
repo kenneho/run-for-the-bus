@@ -235,6 +235,7 @@ public class RuterManager  {
             travel.setRealtimeDepartureFullDate(realtimeData.getExpectedDepartureTime()); // TODO: Remove this
             travel.setDepartureStationID(visit.getStationID());
             travel.setFinalDestinationName(vehicle.getDestinationName());
+            travel.setExpirationTime();
             travelList.add(travel);
             travel.prettyprint();
 

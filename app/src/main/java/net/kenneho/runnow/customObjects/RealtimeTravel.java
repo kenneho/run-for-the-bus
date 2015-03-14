@@ -6,10 +6,14 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.util.Log;
 
+import net.kenneho.runnow.utils.Utils;
+
 public class RealtimeTravel extends Travel implements Parcelable {
 	private Date realtimeDepartureTime;
 	private Date realtimeDepartureFullDate;
 	private final String LOG = "RealtimeTravels";
+    private Date expirationTime;
+    private int bufferInSeconds = 20;
 
 	public RealtimeTravel() {
 
@@ -26,6 +30,15 @@ public class RealtimeTravel extends Travel implements Parcelable {
 	public void setRealtimeDepartureFullDate(Date expectedDepartureTime) {
 		this.realtimeDepartureFullDate = expectedDepartureTime;
 	}
+
+    public void setExpirationTime() {
+        expirationTime = Utils.addSecondsToDate(realtimeDepartureTime, bufferInSeconds);
+
+    }
+
+    public Date getExpirationTime() {
+        return expirationTime;
+    }
 
     public Date getRealtimeDepartureFullDate() {
 		return realtimeDepartureFullDate;
