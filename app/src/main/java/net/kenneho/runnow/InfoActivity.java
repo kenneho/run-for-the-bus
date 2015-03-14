@@ -220,14 +220,15 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onPause() {
-        Log.d(LOG, "onPause()");
+        Log.d(LOG, "onPause(): Removing timerHandler callbacks....");
+        timerHandler.removeCallbacks(timerRunnable); // No need to update our app while sleeping
         super.onPause();
     }
 
     @Override
     public void onResume() {
-        Log.d(LOG, "onResume()");
-
+        Log.d(LOG, "onResume(): Restarting timerHandler...");
+        timerHandler.postDelayed(timerRunnable, 1000);
         super.onResume();
     }
 
