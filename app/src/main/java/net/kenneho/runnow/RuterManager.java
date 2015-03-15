@@ -262,13 +262,11 @@ public class RuterManager  {
         return list;
     }
 
-
     private List<String> getUniqueDestinationNames(List<ScheduledTravel> scheduledTravles) {
         List<String> list = new ArrayList<String>();
 
         for (Travel travel : scheduledTravles) {
             String destinationName = travel.getFinalDestinationName();
-            //System.out.println(destinationName);
             if (!list.contains(destinationName)) {
                 list.add(destinationName);
             }

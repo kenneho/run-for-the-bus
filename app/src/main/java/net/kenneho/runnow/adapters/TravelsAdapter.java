@@ -17,8 +17,6 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-
-
 public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
     private final static String LOG = "TravelsAdapter";
     private List<RealtimeTravel> travels;
@@ -51,15 +49,6 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
 
         if (getCount() < 10) Log.d(LOG, "Fetching position " + position + " of our " + getCount() + " size list");
 
-        /*
-        * Workaround for some random IndexOutOfBoundsException
-        * TODO: Fix root cause
-        *
-        * */
-        if (getCount() == 0) {
-            throw new IndexOutOfBoundsException("Tried to fetch an item for an empty list. Ignoring");
-        }
-
         // Get the data item for this position
         RealtimeTravel travel = getItem(position);
         View rowView = convertView;
@@ -74,14 +63,12 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
             viewHolder.routeName = (TextView) rowView.findViewById(R.id.routeName);
             viewHolder.destinationName = (TextView) rowView.findViewById(R.id.destinationName);
             viewHolder.expectedDeparture = (TextView) rowView.findViewById(R.id.estimatedDepartureTime);
-            //viewHolder.scheduledDeparture = (TextView) rowView.findViewById(R.id.scheduledDepartureTime);
             viewHolder.countdown = (TextView) rowView.findViewById(R.id.countdown);
             viewHolder.layout = (LinearLayout) rowView.findViewById(R.id.row);
 
             rowView.setTag(viewHolder);
         }
         else {
-
             viewHolder = (ViewHolder) rowView.getTag();
 
             // All fields are set for all rows, except the coundown field that is set only for the
@@ -99,7 +86,6 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         viewHolder.destinationName.setText(travel.getFinalDestinationName());
         viewHolder.expectedDeparture.setTextColor(Color.BLACK);
         viewHolder.countdown.setTextColor(Color.BLACK);
-        //viewHolder.scheduledDeparture.setText(Utils.dateToString(travel.getScheduledDepartureTime()));
 
         int bufferInSeconds = 20;
         Date actualDepartureTime = travel.getRealtimeDepartureTime(); // TODO: Må dette inn i viewHolder?
@@ -112,6 +98,7 @@ public class TravelsAdapter extends ArrayAdapter<RealtimeTravel> {
         long timeToDepartureInMillis = Utils.timeDifferenceMilliseconds(actualDepartureTime, now);
 
         // Only show the countdown for the next 3 departures
+        // TODO: Move this to InfoActivity
         if (position < 3) {
             String timeToDeparture = Utils.millisToStringConvert(timeToDepartureInMillis);
             viewHolder.countdown.setText(timeToDeparture);

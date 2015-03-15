@@ -110,7 +110,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     protected void onSaveInstanceState(Bundle outState) {
-        Log.d(LOG, "onSaveInstanceState()");
 
         /*
         * If the user exits the application before the adapter has been set, our
@@ -129,11 +128,10 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
             travels.add(travel);
         }
 
-        Log.i(LOG, "Saving our " + size + " travels to a parcel");
+        Log.i(LOG, "onSaveInstanceState(): Saving our " + size + " travels to a parcel");
         outState.putParcelableArrayList("travels", travels);
 
         super.onSaveInstanceState(outState);
-
     }
 
     @Override
@@ -188,7 +186,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onRestart() {
-        Log.d(LOG, "onRestart()...");
+        Log.d(LOG, "onRestart()");
         super.onRestart();
 
     }
@@ -199,16 +197,9 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         exitActivity();
     }
 
-    private void exitActivity() {
-        Log.i(LOG, "Returning to MainActivity by calling finish()...");
-        finish();
-    }
-
-
     @Override
     public void onStop() {
         Log.d(LOG, "onStop()");
-        //exitActivity();
         super.onStop();
     }
 
@@ -238,51 +229,36 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         super.onDestroy();
     }
 
+    private void exitActivity() {
+        Log.i(LOG, "Returning to MainActivity by calling finish()...");
+        finish();
+    }
 
     private void showProgress(String progress) {
-        //mProgress.setProgress();
         ringProgressDialog.setMessage(progress);
     }
 
     private void empty() {
-
         Utils.warnUser(getApplicationContext(), "Informasjon", getString(R.string.no_travel_found));
-
     }
 
     private void generateListData(int departureID, int destinationID) {
-
         new GenerateList().execute(departureID, destinationID);
-
     }
 
-
     private void removeExpiredTravels(TravelsAdapter myTravels) {
-
-        Log.i(LOG, "Checking for expired travels...3");
-
         List<RealtimeTravel> removeList = new ArrayList<RealtimeTravel>();
-
         for (RealtimeTravel travel : myTravels.getItems()) {
 
             if (hasExpired(travel)) {
 
-                //Log.i(LOG, "Removing expired entry " + travel.getRealtimeDepartureTime() + " from the list");
                 try {
-                    //travelsAdapter.remove(travel);
                     removeList.add(travel);
                 } catch (IndexOutOfBoundsException e) {
                     Log.d(LOG, "Removing the entry caused an IndexOutOfBoundsException.");
                     throw new IndexOutOfBoundsException("Failed to remove item from the TravelsAdapter.");
                 }
-
-                //travelsAdapter.notifyDataSetChanged();
-
             }
-
-            // Update the expiration time, as it may change according to new info from Ruter?
-            //travel.setExpirationTime();
-
         }
 
         for (RealtimeTravel travel : removeList) {
@@ -291,10 +267,12 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         }
     }
 
-
     private void addCountdownTimer(final TravelsAdapter adapter) {
         final TravelsAdapter myAdapter = adapter;
-        Log.d(LOG, "addCountdownTimer()");
+        Log.d(LOG, "Adding CountdownTimer");
+
+        // Make sure we stop existing timers, if any.
+        timerHandler.removeCallbacks(timerRunnable);
 
         timerRunnable = new Runnable() {
             @Override
@@ -303,19 +281,16 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                 removeExpiredTravels(myAdapter);
                 myAdapter.notifyDataSetChanged();
 
-            /*
-            * Make the handler send a message to the Runnable object every second,
-            * in effect making the Runnable object call itself every second
-            *
-            * */
-
-                Log.d(LOG, "run(): timerHandler.postDelayed");
-                 timerHandler.postDelayed(this, 1000);
+                /*
+                 * Make the handler send a message to the Runnable object every second,
+                 * in effect making the Runnable object call itself every second
+                 *
+                 * */
+                timerHandler.postDelayed(this, 1000);
             }
 
         };
 
-        Log.d(LOG, "Staring timerHandler.postDelayed");
         // Fire off the first run
         timerHandler.postDelayed(timerRunnable, 0);
     }
@@ -356,48 +331,35 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
             }
 
             try {
-
                 publishProgress("Gjør klar for å vise resultatene...");
-
                 travelsAdapter = new TravelsAdapter(getApplicationContext(), myTravels);
             } catch (Exception e) {
-
                 e.printStackTrace();
                 Log.e(LOG, "Failed to create TravelsAdapter!");
 
             }
-
-            //removeExpiredTravels(myTravels);
 
             ringProgressDialog.dismiss();
 
             return travelsAdapter;
         }
 
-
-
-
-
         protected void onPostExecute(Object value) {
-
             /*
             * Errors from the background thread are returned as String values.
             * */
             if (value instanceof String) {
                 String errorMessage = (String) value;
-
                 ringProgressDialog.dismiss();
                 cancelActivity(getString(R.string.dialogHeader_error), errorMessage);
-            } else if (value instanceof TravelsAdapter) {
 
+            } else if (value instanceof TravelsAdapter) {
                 Log.d(LOG, "Back in the UI thread. Let's attach the adapter to the listview.");
                 TravelsAdapter adapter = (TravelsAdapter) value;
                 if (adapter != null) {
 
                     if (adapter.getCount() == 0) {
                         cancelActivity("Informasjon", getString(R.string.no_travel_found));
-
-
                     } else {
                         Log.d(LOG, "Will put " + adapter.getCount() + " elements in the list. Now, let's attach our adapter...");
                         setListAdapter(adapter);
@@ -405,9 +367,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                         // We've got a valid travel, so let's save it to our database
                         saveToDatabase();
                         updateSearchTimestamp();
-
                         addCountdownTimer(adapter);
-
                     }
                 } else {
                     Log.i(LOG, "No travels found. Will notify the user");
@@ -470,6 +430,4 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
             return true;
         } else return false;
     }
-
-
 }
