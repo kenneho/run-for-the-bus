@@ -10,10 +10,7 @@ import net.kenneho.runnow.networking.HttpManager;
 import net.kenneho.runnow.networking.IDownloadListener;
 import net.kenneho.runnow.networking.NetworkManager;
 import net.kenneho.runnow.utils.Utils;
-
 import org.xmlpull.v1.XmlPullParserException;
-
-
 import android.accounts.NetworkErrorException;
 import android.annotation.TargetApi;
 import android.app.AlertDialog;
@@ -35,8 +32,8 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class InfoActivity extends ListActivity implements OnRefreshListener {
-    private final String LOG = "InfoActivity";
 
+    private final String LOG = "InfoActivity";
     private IDownloadListener downloadListener;
     private RuterManager ruterManager;
     private SwipeRefreshLayout swipeLayout;
@@ -96,8 +93,10 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
         getListView().setHeaderDividersEnabled(true);
 
-        Log.i(LOG, "Generating a new dataset to display...");
-        generateListData(departureID, destinationID);
+        if (savedInstanceState == null) {
+            Log.i(LOG, "Generating a new dataset to display...");
+            generateListData(departureID, destinationID);
+        }
 
         swipeLayout = (SwipeRefreshLayout) this.findViewById(R.id.swipe_container);
         swipeLayout.setOnRefreshListener(this);
@@ -249,6 +248,11 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     private void removeExpiredTravels(TravelsAdapter myTravels) {
         List<RealtimeTravel> removeList = new ArrayList<RealtimeTravel>();
         for (RealtimeTravel travel : myTravels.getItems()) {
+
+            if (travel == null) {
+                Log.e(LOG, "Read a null object from the adapter.");
+                exitActivity();
+            }
 
             if (hasExpired(travel)) {
 
