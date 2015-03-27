@@ -48,6 +48,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     private final Handler timerHandler = new Handler();
     private Runnable timerRunnable;
     private TravelsAdapter travelsAdapter;
+    boolean callbackPresent = false;
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -142,9 +143,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         try {
             Log.d(LOG, "Creating our adapter using the list of " + travels.size() + " travels");
             TravelsAdapter adapter = new TravelsAdapter(getApplicationContext(), travels);
-            Log.d(LOG, "Attaching the adapter...");
             setListAdapter(adapter);
-            Log.d(LOG, "Adding countdown timer to the list");
             addCountdownTimer(adapter);
             ringProgressDialog.dismiss();
 
@@ -211,14 +210,19 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
     @Override
     public void onPause() {
         Log.d(LOG, "onPause(): Removing timerHandler callbacks....");
-        timerHandler.removeCallbacks(timerRunnable); // No need to update our app while sleeping
+        callbackPresent = false;
+        timerHandler.removeCallbacks(timerRunnable); // No need to update anything while sleeping
         super.onPause();
     }
 
     @Override
     public void onResume() {
         Log.d(LOG, "onResume(): Restarting timerHandler with timerHandler.postDelayed...");
-        timerHandler.postDelayed(timerRunnable, 1000);
+
+        if (!callbackPresent) {
+            callbackPresent = true;
+            timerHandler.postDelayed(timerRunnable, 1000);
+        }
         super.onResume();
     }
 
@@ -290,10 +294,12 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                  * in effect making the Runnable object call itself every second
                  *
                  * */
-                timerHandler.postDelayed(this, 1000);
+                timerHandler.postDelayed(this, 1000); // Re-schedule running "this", i.e the Runnable object, 1000 ms into the future
             }
 
         };
+
+        callbackPresent = true;
 
         // Fire off the first run
         timerHandler.postDelayed(timerRunnable, 0);
