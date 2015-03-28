@@ -10,6 +10,8 @@ import net.kenneho.runnow.networking.HttpManager;
 import net.kenneho.runnow.networking.NetworkManager;
 import net.kenneho.runnow.utils.Utils;
 
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.annotation.TargetApi;
@@ -51,11 +53,14 @@ public class MainActivity extends Activity {
     private TextView t;
     private HttpManager httpManager;
     private NetworkManager networkManager;
+    private String version;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         myContext = this;
+
+        setApplicationTitle();
 
         networkManager = new NetworkManager(this);
         Log.i(LOG, "Creating MainActivity...");
@@ -80,6 +85,25 @@ public class MainActivity extends Activity {
 
         //debug_printDatabase();
 
+    }
+
+    private void setApplicationTitle() {
+        PackageInfo pInfo = null;
+        try {
+            pInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+            version = pInfo.versionName;
+        } catch (PackageManager.NameNotFoundException e) {
+            Log.i(LOG, "Failed to get package manager. ");
+        }
+
+        String appName = getString(R.string.app_name);
+
+        if (version != null) {
+            setTitle(appName + " v" + version);
+        }
+        else {
+            setTitle(appName);
+        }
     }
 
     @Override
