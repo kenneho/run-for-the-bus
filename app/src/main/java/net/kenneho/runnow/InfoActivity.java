@@ -217,11 +217,13 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
 
     @Override
     public void onResume() {
-        Log.d(LOG, "onResume(): Restarting timerHandler with timerHandler.postDelayed...");
-
         if (!callbackPresent) {
             callbackPresent = true;
+            Log.d(LOG, "onResume(): Restarting timerHandler with timerHandler.postDelayed...");
             timerHandler.postDelayed(timerRunnable, 1000);
+        }
+        else {
+            Log.d(LOG, "onResume()");
         }
         super.onResume();
     }
@@ -249,7 +251,7 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
         new GenerateList().execute(departureID, destinationID);
     }
 
-    private void removeExpiredTravels(TravelsAdapter myTravels) {
+    private void removeExpiredTravels(TravelsAdapter myTravels) throws NullPointerException {
         List<RealtimeTravel> removeList = new ArrayList<RealtimeTravel>();
         for (RealtimeTravel travel : myTravels.getItems()) {
 
@@ -263,7 +265,6 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
                 try {
                     removeList.add(travel);
                 } catch (IndexOutOfBoundsException e) {
-                    Log.d(LOG, "Removing the entry caused an IndexOutOfBoundsException.");
                     throw new IndexOutOfBoundsException("Failed to remove item from the TravelsAdapter.");
                 }
             }
@@ -286,7 +287,13 @@ public class InfoActivity extends ListActivity implements OnRefreshListener {
             @Override
             public void run() {
 
-                removeExpiredTravels(myAdapter);
+                try {
+                    removeExpiredTravels(myAdapter);
+                }
+                catch (NullPointerException npe) {
+                    Log.e(LOG, "Caught an nullpointer while removing expired travels. Exiting the activity. ");
+                    exitActivity();
+                }
                 myAdapter.notifyDataSetChanged();
 
                 /*
